@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Fraunces", ui-serif, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  @apply bg-paper text-navy-900 dark:bg-navy-950 dark:text-mist font-body antialiased;
+}
+
+::selection {
+  @apply bg-signal-accent/30;
+}
+
+/* visible keyboard focus, accessible by default */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid theme("colors.signal.accent");
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Signature element: the "test ledger" rule + check mark system ---
+   A recurring visual motif drawn from QA artifacts: a pass/fail ledger
+   line used as a divider, and a hand-drawn check mark used in place of
+   generic bullet icons across the site. */
+
+.ledger-rule {
+  position: relative;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    theme("colors.navy.300") 0%,
+    theme("colors.navy.300") 70%,
+    transparent 70%,
+    transparent 100%
+  );
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+}
+
+.dark .ledger-rule {
+  background: linear-gradient(
+    to right,
+    theme("colors.navy.600") 0%,
+    theme("colors.navy.600") 70%,
+    transparent 70%,
+    transparent 100%
+  );
+  background-size: 12px 1px;
+  background-repeat: repeat-x;
+}
+
+.case-id {
+  @apply font-mono text-[11px] tracking-widebit uppercase text-navy-400 dark:text-navy-300;
+}
+
+.container-page {
+  @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+}
+
+.section-pad {
+  @apply py-20 sm:py-28;
+}
+
+.card-surface {
+  @apply rounded-xl border border-mist bg-white shadow-card dark:border-navy-700 dark:bg-navy-900;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md bg-navy-800 px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-navy-700 dark:bg-signal-accent dark:text-navy-950 dark:hover:bg-signal-accent/90;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md border border-navy-300 px-5 py-3 text-sm font-medium text-navy-800 transition-colors hover:bg-navy-50 dark:border-navy-600 dark:text-mist dark:hover:bg-navy-800;
+}
+
+.eyebrow {
+  @apply font-mono text-xs uppercase tracking-widebit text-signal-accent;
+}
